@@ -3,6 +3,14 @@ import { isStr, TAG } from './reconcile'
 
 const defaultObj = {} as const
 
+/**
+ * 新旧props遍历并依次调用callback执行
+ * 1. 遍历旧props的属性，调用callback处理新旧值
+ * 2. 遍历新props的属性，调用callback处理新增属性
+ * @param aProps 
+ * @param bProps 
+ * @param callback 
+ */
 const jointIter = <P extends Attributes>(
   aProps: P,
   bProps: P,
@@ -14,6 +22,16 @@ const jointIter = <P extends Attributes>(
   Object.keys(bProps).forEach(k => !aProps.hasOwnProperty(k) && callback(k,undefined, bProps[k])) 
 }
 
+/***
+ * 更新节点：
+ * 1. 对于新旧属性完全相同或节点名字为children则不做任何处理
+ * 2. 处理style
+ * 3. 处理on开头的事件：先移除再重新添加
+ * 4. 处理非SVG元素的dom属性
+ * 5. 对于新属性为null或false的直接移除
+ * 6. 更新属性为新值
+ * 
+ */
 export const updateElement = <P extends Attributes>(
   dom: DOM,
   aProps: P,
@@ -41,6 +59,15 @@ export const updateElement = <P extends Attributes>(
   })
 }
 
+/**
+ * 1. 创建节点，主要分为以下几种情况：
+ *   1. 文本节点
+ *   2. SVG节点
+ *   3. 普通的HTML节点
+ * 2. 更新节点
+ * @param fiber 
+ * @returns 
+ */
 export const createElement = <P = Attributes>(fiber: IFiber) => {
   const dom =
     fiber.type === '#text'

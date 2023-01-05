@@ -233,6 +233,7 @@ const same = (a, b) => {
   return a && b && a.key === b.key && a.type === b.type
 }
 
+// 返回数组：空值为[]、非数组用数组包裹
 export const arrayfy = arr => (!arr ? [] : isArr(arr) ? arr : [arr])
 
 const side = (effects: IEffect[]): void => {
