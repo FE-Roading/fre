@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@skypack/package-check': ^0.2.2
@@ -27,7 +27,7 @@ devDependencies:
   rollup: 2.79.1
   rollup-plugin-size: 0.2.2
   rollup-plugin-terser: 5.3.1_rollup@2.79.1
-  rollup-plugin-typescript2: 0.27.3_rollup@2.79.1+typescript@4.9.3
+  rollup-plugin-typescript2: 0.27.3_k35zwyycrckt5xfsejji7kbwn4
   terser: 4.8.1
   typescript: 4.9.3
   vite: 2.9.15
@@ -202,6 +202,8 @@ packages:
     resolution: {integrity: sha512-r27t/cy/m9uKLXQNWWebeCUHgnAZq0CpG1OwKRxzJMP1vpSU4bSIK2hq+/cp0bQxetkXx38n09rNu8jVkcK/zA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.20.5
     dev: true
 
   /@babel/template/7.18.10:
@@ -377,6 +379,12 @@ packages:
     dev: false
     optional: true
 
+  /acorn/8.8.1:
+    resolution: {integrity: sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
   /agent-base/6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -487,6 +495,8 @@ packages:
     deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
     dependencies:
       follow-redirects: 1.5.10
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /balanced-match/1.0.2:
@@ -752,6 +762,11 @@ packages:
 
   /debug/3.1.0:
     resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
@@ -1399,6 +1414,8 @@ packages:
     engines: {node: '>=4.0'}
     dependencies:
       debug: 3.1.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /for-each/0.3.3:
@@ -2572,6 +2589,8 @@ packages:
     engines: {node: '>=10.0.0'}
     dependencies:
       size-plugin-core: 0.0.7
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /rollup-plugin-terser/5.3.1_rollup@2.79.1:
@@ -2588,7 +2607,7 @@ packages:
       terser: 4.8.1
     dev: true
 
-  /rollup-plugin-typescript2/0.27.3_rollup@2.79.1+typescript@4.9.3:
+  /rollup-plugin-typescript2/0.27.3_k35zwyycrckt5xfsejji7kbwn4:
     resolution: {integrity: sha512-gmYPIFmALj9D3Ga1ZbTZAKTXq1JKlTQBtj299DXhqYz9cL3g/AQfUvbb2UhH+Nf++cCq941W2Mv7UcrcgLzJJg==}
     peerDependencies:
       rollup: '>=1.26.3'
@@ -2723,6 +2742,8 @@ packages:
       pretty-bytes: 5.6.0
       size-plugin-store: 0.0.5
       util.promisify: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /size-plugin-store/0.0.5:
@@ -2730,6 +2751,8 @@ packages:
     dependencies:
       axios: 0.19.2
       ci-env: 1.17.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /slash/3.0.0:
@@ -2971,6 +2994,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
+      acorn: 8.8.1
       commander: 2.20.3
       source-map: 0.6.1
       source-map-support: 0.5.21

@@ -27,16 +27,21 @@ export const enum TAG {
 }
 
 export const render = (vnode: FreElement, node: Node): void => {
+  // 根Fiber
   const rootFiber = {
     node,
     props: { children: vnode },
   } as IFiber
+
   update(rootFiber)
 }
 
 export const update = (fiber?: IFiber) => {
+  // 非TAG.DIRTY状态进行更新
   if (fiber && !(fiber.lane & TAG.DIRTY)) {
     fiber.lane = TAG.UPDATE | TAG.DIRTY
+
+    // 开启非阻塞式进行reconcilation
     schedule(() => {
       effectList = fiber
       return reconcile(fiber)
