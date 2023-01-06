@@ -56,6 +56,7 @@ const reconcile = (fiber?: IFiber): boolean => {
 }
 
 const memo = (fiber) => {
+  // fiber的memo和oldProps都存在时，通过shouldUpdate判断是否需要更新，不需要更新时则返回它的相邻兄弟节点
   if ((fiber.type as FC).memo && fiber.oldProps) {
     let scu = (fiber.type as FC).shouldUpdate || shouldUpdate
     if (!scu(fiber.props, fiber.oldProps)) { // fast-fix
@@ -66,6 +67,7 @@ const memo = (fiber) => {
 }
 
 const capture = (fiber: IFiber): IFiber | undefined => {
+  // 组件标识
   fiber.isComp = isFn(fiber.type)
   if (fiber.isComp) {
     const memoFiber = memo(fiber)
@@ -346,6 +348,7 @@ function bs(ktr, j) {
 }
 
 export const getCurrentFiber = () => currentFiber || null
+// 是否是一个函数
 export const isFn = (x: any): x is Function => typeof x === 'function'
 export const isStr = (s: any): s is number | string =>
   typeof s === 'number' || typeof s === 'string'
